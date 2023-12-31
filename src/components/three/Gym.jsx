@@ -10,7 +10,7 @@ export function Gym1(props) {
   const { nodes, materials } = useGLTF(model_url)
 
 
-  console.log(nodes)
+  //console.log(nodes)
 
   return (
     <group {...props} dispose={null} position={[0,-1,0]}>

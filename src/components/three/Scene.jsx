@@ -4,6 +4,10 @@ import { Canvas } from '@react-three/fiber'
 import { CameraControls, Environment } from '@react-three/drei'
 import { useControls } from 'leva'
 import { degToRad } from 'three/src/math/MathUtils'
+import { GymCardio } from './GymCardio'
+import { GymFunctional } from './GymFunctional'
+import { GymMachines } from './GymMachines'
+import { GymStrength } from './GymStrength'
 
 function Scene() {
 
@@ -26,7 +30,12 @@ function Scene() {
       */}  
         <CameraControls ref={cameraControlsRef} />
   
-        <Gym1 />
+        {/* <Gym1 /> */}
+        <GymCardio />
+        <GymFunctional />
+        <GymMachines />
+        <GymStrength />
+          
 
         <ambientLight intensity={1} />
         <pointLight position={[0, 10, 0]} decay={0} distance={45} penumbra={1} intensity={5} /> 
