@@ -1,257 +1,167 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 const model_url = "models/gym-cardio.glb"
 
 export function GymCardio(props) {
   const { nodes, materials } = useGLTF(model_url);
+  
+  
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} ref={props.cardioRef}>
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.light003.geometry}
         material={materials.lights}
-        position={[-1.426, 1.793, 0.039]}
+        position={[0.11, 1.793, 1.574]}
         rotation={[0, 0, -Math.PI]}
         scale={[-0.069, -0.069, -0.248]}
       />
-      <group position={[-1.444, 1.186, 0.027]} rotation={[0, -1.571, 0]}>
+      <group position={[1.536, 0, 1.535]}>
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube041.geometry}
-          material={materials.tv}
+          geometry={nodes.Cube006.geometry}
+          material={materials["wall.002"]}
         />
         <mesh
-          castShadow
-          receiveShadow
+          geometry={nodes.Cube006_1.geometry}
+          material={materials["floor.002"]}
+        />
+      </group>
+      <group position={[0.092, 1.186, 1.562]} rotation={[0, -1.571, 0]}>
+        <mesh geometry={nodes.Cube041.geometry} material={materials.tv} />
+        <mesh
           geometry={nodes.Cube041_1.geometry}
           material={materials.tvscreen}
         />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube041_2.geometry}
-          material={materials.btns}
-        />
+        <mesh geometry={nodes.Cube041_2.geometry} material={materials.btns} />
       </group>
       <group
-        position={[1.078, 0.103, 0.72]}
+        position={[2.614, 0.103, 2.255]}
         rotation={[Math.PI, -1.309, Math.PI]}
         scale={[0.65, 0.527, 0.503]}
       >
+        <mesh geometry={nodes.Cube043.geometry} material={materials.stepper} />
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube043.geometry}
-          material={materials.stepper}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube043_1.geometry}
           material={materials["stepper.001"]}
         />
       </group>
-      <group position={[1.117, 0.253, -0.047]} scale={[0.066, 0.035, 0.054]}>
+      <group position={[2.653, 0.253, 1.488]} scale={[0.066, 0.035, 0.054]}>
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube018.geometry}
           material={materials["cardio-beams"]}
         />
+        <mesh geometry={nodes.Cube018_1.geometry} material={materials.black} />
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube018_1.geometry}
-          material={materials.black}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube018_2.geometry}
           material={materials["black.005"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube018_3.geometry}
           material={materials["black.004"]}
         />
+        <mesh geometry={nodes.Cube018_4.geometry} material={materials.cable} />
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube018_4.geometry}
-          material={materials.cable}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube018_5.geometry}
           material={materials["c-handle"]}
         />
       </group>
       <group
-        position={[0.489, 0.069, 1.051]}
+        position={[2.025, 0.069, 2.586]}
         rotation={[0, 0.471, 0]}
         scale={0.496}
       >
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.BezierCurve011.geometry}
           material={materials["wood.003"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.BezierCurve011_1.geometry}
           material={materials.skiprope}
         />
       </group>
-      <group position={[0.371, 0.332, -0.42]} scale={[0.294, 0.246, 0.246]}>
+      <group position={[1.907, 0.332, 1.114]} scale={[0.294, 0.246, 0.246]}>
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098.geometry}
           material={materials["cardio-beams"]}
         />
+        <mesh geometry={nodes.Cube098_1.geometry} material={materials.black} />
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube098_1.geometry}
-          material={materials.black}
-        />
-        <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_2.geometry}
           material={materials["black.007"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_3.geometry}
           material={materials["black.005"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_4.geometry}
           material={materials["black.004"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_5.geometry}
           material={materials["black.006"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_6.geometry}
           material={materials["c-red"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube098_7.geometry}
           material={materials["fn-steel"]}
         />
       </group>
       <group
-        position={[-0.743, 0.081, -0.615]}
+        position={[0.793, 0.081, 0.92]}
         rotation={[0, 1.571, 0]}
         scale={[0.087, 0.083, 0.087]}
       >
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube113.geometry}
           material={materials["cardio-beams.001"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube113_1.geometry}
           material={materials["black.015"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube113_2.geometry}
           material={materials["black.014"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube113_3.geometry}
           material={materials["black.013"]}
         />
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Cube113_4.geometry}
           material={materials["cardio-beams.005"]}
         />
       </group>
-      <group position={[0.685, 1.082, -1.445]} rotation={[Math.PI, 0, Math.PI]}>
+      <group position={[1.536, 0, 1.535]}>
         <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube041.geometry}
-          material={materials.tv}
+          geometry={nodes.Cube036.geometry}
+          material={materials["black.012"]}
         />
         <mesh
-          castShadow
-          receiveShadow
+          geometry={nodes.Cube036_1.geometry}
+          material={materials["cardio-beams.004"]}
+        />
+        <mesh
+          geometry={nodes.Cube036_2.geometry}
+          material={materials["cardio-beams.003"]}
+        />
+        <mesh
+          geometry={nodes.Cube036_3.geometry}
+          material={materials["cardio-beams.002"]}
+        />
+      </group>
+      <group position={[2.221, 1.082, 0.09]} rotation={[Math.PI, 0, Math.PI]}>
+        <mesh geometry={nodes.Cube041.geometry} material={materials.tv} />
+        <mesh
           geometry={nodes.Cube041_1.geometry}
           material={materials.tvscreen}
         />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cube041_2.geometry}
-          material={materials.btns}
-        />
+        <mesh geometry={nodes.Cube041_2.geometry} material={materials.btns} />
       </group>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube006.geometry}
-        material={materials["wall.002"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube006_1.geometry}
-        material={materials["floor.002"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube036.geometry}
-        material={materials["black.012"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube036_1.geometry}
-        material={materials["cardio-beams.004"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube036_2.geometry}
-        material={materials["cardio-beams.003"]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube036_3.geometry}
-        material={materials["cardio-beams.002"]}
-      />
     </group>
   );
 }

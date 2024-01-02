@@ -9,7 +9,7 @@ export function GymStrength(props) {
   
   return (
     <group {...props} dispose={null}>
-      <group position={[-3.072, 0, 0]} rotation={[0, -1.571, 0]}>
+      <group position={[-1.536, 0, 1.535]} rotation={[0, -1.571, 0]}>
         <mesh
           castShadow
           receiveShadow
@@ -23,7 +23,7 @@ export function GymStrength(props) {
           material={materials.floor}
         />
       </group>
-      <group position={[-3.729, 0.094, 0.655]} rotation={[0, -1.571, 0]}>
+      <group position={[-2.193, 0.094, 2.19]} rotation={[0, -1.571, 0]}>
         <mesh
           castShadow
           receiveShadow
@@ -49,7 +49,7 @@ export function GymStrength(props) {
           material={materials["weights.006"]}
         />
       </group>
-      <group position={[-2.748, 0.343, -0.105]} rotation={[0, -1.571, 0]}>
+      <group position={[-1.212, 0.343, 1.43]} rotation={[0, -1.571, 0]}>
         <mesh
           castShadow
           receiveShadow
@@ -63,7 +63,7 @@ export function GymStrength(props) {
           material={materials["weights.004"]}
         />
       </group>
-      <group position={[-6.567, -1.137, -4.958]}>
+      <group position={[-5.03, -1.137, -3.423]}>
         <mesh
           castShadow
           receiveShadow
@@ -96,7 +96,7 @@ export function GymStrength(props) {
         />
       </group>
       <group
-        position={[-2.108, 0.797, 1.342]}
+        position={[-0.572, 0.797, 2.876]}
         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
       >
         <mesh
@@ -143,7 +143,7 @@ export function GymStrength(props) {
         />
       </group>
       <group
-        position={[-2.335, 0.218, -0.991]}
+        position={[-0.799, 0.218, 0.543]}
         rotation={[0.197, 0, -Math.PI / 2]}
         scale={[0.029, 0.163, 0.084]}
       >
@@ -171,12 +171,12 @@ export function GymStrength(props) {
         receiveShadow
         geometry={nodes.light.geometry}
         material={materials.lights}
-        position={[-3.056, 1.793, -1.458]}
+        position={[-1.52, 1.793, 0.076]}
         rotation={[Math.PI, -1.571, 0]}
         scale={[-0.069, -0.069, -0.248]}
       />
       <group
-        position={[-4.213, 0.065, -0.078]}
+        position={[-2.677, 0.065, 1.457]}
         rotation={[-1.277, 0.183, 2.909]}
         scale={0.011}
       >
@@ -206,7 +206,7 @@ export function GymStrength(props) {
         />
       </group>
       <group
-        position={[-1.713, 1.031, -0.509]}
+        position={[-0.177, 1.031, 1.026]}
         rotation={[0, -1.571, 0]}
         scale={[0.255, 0.31, 0.106]}
       >
