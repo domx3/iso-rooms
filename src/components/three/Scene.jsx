@@ -1,48 +1,25 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Gym1 } from './Gym'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { CameraControls, Environment, ScrollControls, useScroll } from '@react-three/drei'
-import { useControls } from 'leva'
-import { degToRad } from 'three/src/math/MathUtils'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Canvas, } from '@react-three/fiber'
+import { CameraControls, ScrollControls } from '@react-three/drei'
+//import { useControls } from 'leva'
 import AllGyms from './AllGyms'
 
+let zoomIn = false
 
 function Scene() {
 
   //const cameraControlsRef = useRef(null)
   const [cameraControlsRef, setCameraControlsRef] = useState(null)
+//  const [zoomIn, setZoomIn] = useState(false)
   const meshFitCameraHome = useRef(null)
 
 
-  const { gymRotation, setVis } = useControls({
-    gymRotation: {
-      value: 0,
-      min: 0,
-      max: Math.PI * 2,
-      step: 0.1
-    },
+/*   const { setVis } = useControls({
     setVis: {
       value: true
     }
-  })
+  }) */
   
-  const cardioRef = useRef()
-
-  useEffect(()=> {
-    //setCameraControls()
-    if(cardioRef.current) {
-      cardioRef.current.traverse((object) => {
-        if (object.isMesh && object.material) {
-          object.material.opacity = 0.5;
-          object.material.transparent = true;
-          //console.log(object.material)
-        }
-      })
-    }
-    
-    fitCamera()
-  }, [setVis])
-
   const fitCamera = async () => {
     //console.log(cameraControlsRef)
     if(cameraControlsRef) {
@@ -58,28 +35,35 @@ function Scene() {
       cameraControlsRef.mouseButtons.right = 0
       cameraControlsRef.mouseButtons.left = 0
       cameraControlsRef.mouseButtons.wheel = 0
+      cameraControlsRef.touches.one = 0
+      cameraControlsRef.touches.two = 0
+      cameraControlsRef.touches.three = 0
       fitCamera()
     }
   }
 
-/* 
-  useEffect(() => {
-    
-    window.addEventListener("resize", fitCamera);
-    
-    return () => {
-      window.removeEventListener("resize", fitCamera)
+  const onClickZoom = () => {
+    let zoomValue;
+    if(zoomIn){
+      fitCamera()
+    } else {
+      zoomValue = window.innerWidth > 1000 ? 300 : 200
+      cameraControlsRef.zoomTo(zoomValue, true )
     }
-  }, []); */
+    //setZoomIn(()=>!zoomIn)
+    zoomIn = !zoomIn
+  }
 
+  useEffect(()=>{
+    return window.removeEventListener("resize", fitCamera);
+  },[])
 
-/*   const scroll = useScroll()
-*/
   const cameraCallback = useCallback(node => {
     if(node !== null){
-      setCameraControls()
       setCameraControlsRef(node)
+      setCameraControls()
       window.addEventListener("resize", fitCamera);
+      
     }
   })
 
@@ -93,10 +77,11 @@ function Scene() {
         //camera={{ fov:45, near: 0.1, far:1000, position: [3, 2, 3]}}
         //shadows
         //flat linear
+        onClick={onClickZoom}
       >
         <mesh ref={meshFitCameraHome} position={[1.5,1,1.5]} visible={true}>
           <sphereGeometry args={[2.7, 16, 16]} />
-          <meshBasicMaterial color="red" transparent opacity={0.5} />
+          <meshBasicMaterial color="red" transparent opacity={0.0} />
         </mesh>
         {/* 
         <Environment preset='city'intensity={2.1}/>   
@@ -107,14 +92,14 @@ function Scene() {
           azimuthRotateSpeed={0}
           
         />
-  
-        <AllGyms 
-          gymRotation={gymRotation}
-        />
-     {/*    <ScrollControls pages={1} damping={0.1}>
-        </ScrollControls> */}
+        <ScrollControls pages={4} damping={0.1}>
+          
+          <AllGyms 
+           
+          />
+        </ScrollControls>
 
-        <ambientLight intensity={1} />
+        <ambientLight intensity={3} />
         <pointLight position={[0, 10, 0]} decay={0} distance={45} penumbra={1} intensity={5} /> 
         {/* 
         */}

@@ -11,11 +11,12 @@ export default function Navbar({toggleCanvas}) {
 
   return (
     <div className='flex justify-between items-center h-24 max-w-[1240px] text-white px-4 mx-auto'>
-    <div className='flex'>
+    <div className='flex items-center'>
+      <img width={80} src='/iso-rooms_logo.svg' alt='logo' className='mr-4'/>
       <h1 className='text-xl font-bold uppercase'>Isometric rooms</h1>
     </div>
       <ul className='hidden md:flex'> 
-        <li className='p-4 ' onClick={toggleCanvas}>Home</li>        
+        <li className='p-4 ' onClick={toggleCanvas}>Gym</li>        
       </ul>
       <div onClick={handleNav} className='block md:hidden'>
         {nav ? 
@@ -29,7 +30,7 @@ export default function Navbar({toggleCanvas}) {
         : 'fixed left-[-100%]'
       }>
         <ul className='p-4 uppercase'>
-          <li className='p-4 border-b border-gray-600'>Home</li>
+          <li className='p-4 border-b border-gray-600' onClick={toggleCanvas}>Gym</li>
         </ul>
       </div>
     </div>

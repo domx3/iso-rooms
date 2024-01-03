@@ -3,11 +3,11 @@ import { useGLTF } from "@react-three/drei";
 
 const model_url = "models/gym-functional.glb"
 
-export function GymFunctional(props) {
+export function GymFunctional({functionalRef}) {
   const { nodes, materials } = useGLTF(model_url);
   
   return (
-    <group {...props} dispose={null}>
+    <group ref={functionalRef} dispose={null} name="functional">
       <mesh
         geometry={nodes.light002.geometry}
         material={materials.lights}

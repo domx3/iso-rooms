@@ -3,12 +3,12 @@ import { useGLTF } from "@react-three/drei";
 
 const model_url = "models/gym-strength.glb"
 
-export function GymStrength(props) {
+export function GymStrength({ strengthRef }) {
   
   const { nodes, materials } = useGLTF(model_url);
   
   return (
-    <group {...props} dispose={null}>
+    <group ref={strengthRef} dispose={null} name="strength">
       <group position={[-1.536, 0, 1.535]} rotation={[0, -1.571, 0]}>
         <mesh
           castShadow

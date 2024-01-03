@@ -1,48 +1,90 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {MathUtils} from 'three'
 import { useFrame } from '@react-three/fiber';
 import { GymCardio } from './GymCardio'
 import { GymFunctional } from './GymFunctional'
 import { GymMachines } from './GymMachines'
 import { GymStrength } from './GymStrength'
+import { useScroll } from '@react-three/drei';
 
-export default function AllGyms({ gymRotation }) {
-  const [targetRotation, setTargetRotation] = useState(0);
-  const gymGroup = useRef(null)
+export default function AllGyms(props) {
   
-   const onScrollRotate = (event) => {
-    const rotationSpeed = 0.0015;
-    console.log(targetRotation)
-    setTargetRotation((prevRotation) => {
-      console.log(Math.round(prevRotation * 100)/ 100)
-      return prevRotation + event.deltaY * rotationSpeed});
+  const gymGroup = useRef(null)
+  const [room, setRoom] = useState('strength')
+  const [oldRoom, setOldRoom] = useState(null)
+  
+  const strengthRef = useRef()
+  const functionalRef = useRef()
+  const machinesRef = useRef()
+  const cardioRef = useRef()
+
+  const roomRefs = {
+    strength: strengthRef,
+    functional: functionalRef,
+    machines: machinesRef,
+    cardio: cardioRef
+  }
+
+  const setNewRoom = (newRoom) => {
+    setRoom((prevRoom) => {
+      setOldRoom(prevRoom)
+      return newRoom
+    })
+  }
+
+  // onOff: true - lights on / false - ligths off
+  const setOpacity = (ref, onOff) => {
+    if(ref && ref.current) {
+      ref.current.traverse((object) => {
+        if (object.isMesh && object.material) {
+          object.material.opacity = onOff ? 1 : 0.1;
+          object.material.transparent = onOff ? false : true;
+          
+        }
+      })
+    }
   }
 
   useEffect(() => {
-    window.addEventListener('wheel', onScrollRotate);
-    
-    return () => {
-      window.removeEventListener('wheel', onScrollRotate);
-    }
-  }, []);
+    //console.log('new room: '+ room+' , old room:'+oldRoom)
+    setOpacity(roomRefs[room], true)
+    setOpacity(roomRefs[oldRoom], false)
+  }, [room]);
+
+  useEffect(() => {
+    //setOpacity(strengthRef, false)
+    setOpacity(functionalRef, false)
+    setOpacity(machinesRef, false)
+    setOpacity(cardioRef, false)
+  },[])
+
+  const scroll = useScroll()
 
   useFrame(() => {
+    gymGroup.current.rotation.y = Math.PI / 2 + scroll.offset * Math.PI * 3 / 2
 
-    // Use lerp to smoothly transition the rotation
-      gymGroup.current.rotation.y = MathUtils.lerp(
-      gymGroup.current.rotation.y,
-      targetRotation,
-      0.1 // Adjust the smoothing factor
-    );
+    const a = scroll.range(0, 0.18)
+    const b = scroll.range(0.18, 0.32)
+    const c = scroll.range(0.5, 0.32)
+    const d = scroll.range(0.82, 0.18)
+    if(a > 0 && a < 1 && room != 'strength'){
+      setNewRoom('strength')
+    }else if (b > 0 && b < 1 && room != 'functional') {
+      setNewRoom('functional')
+    }else if (c < 1 && c > 0 && room != 'machines') {
+      setNewRoom('machines')
+    }else if(d > 0 && d < 1 && room != 'cardio') {
+      setNewRoom('cardio')
+    }
+
   });
   
   return (
-    <group ref={gymGroup} rotation={[0, gymRotation, 0]}>
+    <group ref={gymGroup} rotation={[0, Math.PI / 2, 0]}>
 
-        <GymCardio />
-        <GymFunctional />
-        <GymMachines />
-        <GymStrength />
+        <GymCardio cardioRef={cardioRef} />
+        <GymFunctional functionalRef={functionalRef} />
+        <GymMachines machinesRef={machinesRef} />
+        <GymStrength strengthRef={strengthRef} />
 
     </group>
   )
