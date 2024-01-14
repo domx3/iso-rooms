@@ -12,7 +12,7 @@ function Scene() {
   const [cameraControlsRef, setCameraControlsRef] = useState(null)
 //  const [zoomIn, setZoomIn] = useState(false)
   const meshFitCameraHome = useRef(null)
-
+  
 
 /*   const { setVis } = useControls({
     setVis: {

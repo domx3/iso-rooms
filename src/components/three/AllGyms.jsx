@@ -11,6 +11,7 @@ export default function AllGyms(props) {
   const gymGroup = useRef(null)
   const [room, setRoom] = useState('strength')
   const [oldRoom, setOldRoom] = useState(null)
+  const [gymBanner, setGymBanner] = useState(null)
   
   const strengthRef = useRef()
   const functionalRef = useRef()
@@ -51,6 +52,7 @@ export default function AllGyms(props) {
   }, [room]);
 
   useEffect(() => {
+    setGymBanner(document.getElementById("gym-banner"))
     //setOpacity(strengthRef, false)
     setOpacity(functionalRef, false)
     setOpacity(machinesRef, false)
@@ -61,6 +63,8 @@ export default function AllGyms(props) {
 
   useFrame(() => {
     gymGroup.current.rotation.y = Math.PI / 2 + scroll.offset * Math.PI * 3 / 2
+
+    gymBanner.style.transform = 'translateX(' + scroll.offset *100+ '%)';
 
     const a = scroll.range(0, 0.18)
     const b = scroll.range(0.18, 0.32)

@@ -11,3 +11,7 @@ html, body {
 body {
   background-color: #000300;
 }
+
+.lemon-font {
+  font-family: 'Lemon', serif;
+}
