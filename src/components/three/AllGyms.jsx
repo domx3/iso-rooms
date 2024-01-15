@@ -5,10 +5,12 @@ import { GymFunctional } from './GymFunctional'
 import { GymMachines } from './GymMachines'
 import { GymStrength } from './GymStrength'
 import { useScroll } from '@react-three/drei';
+import SetTouchAction from '../SetTouchAction';
 
 export default function AllGyms(props) {
   
   const gymGroup = useRef(null)
+  const [setTouchAction, changeSetTouchAction] = useState(true)
   const [room, setRoom] = useState('strength')
   const [oldRoom, setOldRoom] = useState(null)
   const [gymBanner, setGymBanner] = useState(null)
@@ -89,6 +91,11 @@ export default function AllGyms(props) {
         <GymFunctional functionalRef={functionalRef} />
         <GymMachines machinesRef={machinesRef} />
         <GymStrength strengthRef={strengthRef} />
+        {setTouchAction &&
+          <SetTouchAction 
+            changeSetTouchAction={changeSetTouchAction}
+          />
+        }
 
     </group>
   )
