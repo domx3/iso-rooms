@@ -6,6 +6,15 @@ import AllGyms from './AllGyms'
 
 let zoomIn = false
 
+function updateTouchAction(element) {
+  if (element.style.touchAction === 'none') {
+      element.style.touchAction = 'auto';
+  }
+  for (var i = 0; i < element.children.length; i++) {
+      updateTouchAction(element.children[i]);
+  }
+}
+
 function Scene() {
 
   //const cameraControlsRef = useRef(null)
@@ -55,6 +64,7 @@ function Scene() {
   }
 
   useEffect(()=>{
+    updateTouchAction(document.getElementById("canvas-container"))
     return window.removeEventListener("resize", fitCamera);
   },[])
 

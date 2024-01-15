@@ -24,7 +24,7 @@ function App() {
           <FrontPage />
         </div> 
         :
-        <div className='h-[100vh] w-[100vw] overflow-hidden'>
+        <div id="canvas-container" className='h-[100vh] w-[100vw] overflow-hidden'>
           <Scene />
           {/* <img src='esc-w.svg'
             className='fixed top-10 right-10 cursor-pointer'
